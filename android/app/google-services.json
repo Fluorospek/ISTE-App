@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "807213938440",
+    "project_id": "iste-app-b039c",
+    "storage_bucket": "iste-app-b039c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807213938440:android:b99bc3e6d9771bf8d05ebd",
+        "android_client_info": {
+          "package_name": "com.iste.iste_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807213938440-845bs3ka02s9blq8k4daep94doqh7fb1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3mk4PzPE0Xy8tHsPrZBjnTsJdtqUe204"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807213938440-845bs3ka02s9blq8k4daep94doqh7fb1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
