@@ -19,7 +19,11 @@ class _SignupPageState extends State<SignupPage> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
-        child: Container(),
+        child: Center(
+          child: Container(
+            child: Text('Sign-up Page'),
+          ),
+        ),
       ),
     );
   }

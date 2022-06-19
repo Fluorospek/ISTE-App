@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'signup_page.dart';
@@ -11,6 +14,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _auth = FirebaseAuth.instance;
   String email = 'Default';
   String password = 'Default';
 
@@ -20,53 +24,55 @@ class _LoginPageState extends State<LoginPage> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Stack(
-              alignment: Alignment.topCenter,
-              overflow: Overflow.visible,
-              children: [
-                Container(
-                  height: height * 0.45,
-                  width: width,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('images/campus.png'),
-                      fit: BoxFit.fill,
-                      colorFilter: new ColorFilter.mode(
-                          Colors.black.withOpacity(0.65), BlendMode.dstATop),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: -10,
-                  child: Container(
-                    height: 23.0,
-                    width: 700.0,
+        child: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
+          child: Column(
+            children: [
+              Stack(
+                alignment: Alignment.topCenter,
+                overflow: Overflow.visible,
+                children: [
+                  Container(
+                    height: height * 0.45,
+                    width: width,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        stops: [0.1, 0.6],
-                        colors: [Colors.transparent, Colors.black],
+                      image: DecorationImage(
+                        image: AssetImage('images/campus.png'),
+                        fit: BoxFit.fill,
+                        colorFilter: new ColorFilter.mode(
+                            Colors.black.withOpacity(0.65), BlendMode.dstATop),
                       ),
                     ),
                   ),
-                ),
-                Positioned(
-                  top: 20,
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(40, 80, 0, 0),
-                    child: Image.asset(
-                      'images/iste_logo.png',
-                      scale: 1.7,
+                  Positioned(
+                    bottom: -10,
+                    child: Container(
+                      height: 23.0,
+                      width: 700.0,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          stops: [0.1, 0.6],
+                          colors: [Colors.transparent, Colors.black],
+                        ),
+                      ),
                     ),
                   ),
-                )
-              ],
-            ),
-            Expanded(
-              child: Container(
+                  Positioned(
+                    top: 20,
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(40, 80, 0, 0),
+                      child: Image.asset(
+                        'images/iste_logo.png',
+                        scale: 1.7,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Container(
+                height: height * 0.50,
                 decoration: BoxDecoration(color: Colors.black),
                 child: Column(
                   children: [
@@ -143,6 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                         width: 320,
                         height: 39,
                         child: TextField(
+                          obscureText: true,
                           onChanged: (value) {
                             password = value;
                           },
@@ -176,8 +183,9 @@ class _LoginPageState extends State<LoginPage> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(shape: StadiumBorder()),
                         child: Text('Submit'),
-                        onPressed: () {
-                          print('Hello');
+                        onPressed: () async {
+                          final user = _auth.signInWithEmailAndPassword(
+                              email: email, password: password);
                         },
                       ),
                     ),
@@ -206,8 +214,8 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
