@@ -1,10 +1,10 @@
 import 'dart:ui';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'signup_page.dart';
 import 'package:get/get.dart';
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _auth = FirebaseAuth.instance;
+  final auth = FirebaseAuth.instance;
   String email = 'Default';
   String password = 'Default';
 
@@ -183,9 +183,19 @@ class _LoginPageState extends State<LoginPage> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(shape: StadiumBorder()),
                         child: Text('Submit'),
-                        onPressed: () async {
-                          final user = _auth.signInWithEmailAndPassword(
-                              email: email, password: password);
+                        onPressed: () {
+                          try {
+                            final user = auth.signInWithEmailAndPassword(
+                                email: email, password: password);
+                            if (user != null) {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => Homepage()),
+                              );
+                            }
+                          } catch (e) {
+                            print(e);
+                          }
                         },
                       ),
                     ),
