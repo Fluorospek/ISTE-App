@@ -22,6 +22,7 @@ dependencies:
   firebase_auth: ^3.3.20
   cloud_firestore: ^3.1.18
   get: ^4.6.5
+  flutter_launcher_icons: ^0.9.3
 
 dev_dependencies:
   flutter_test:
@@ -39,4 +40,8 @@ flutter:
   assets:
     - images/
 
+futter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "images/istelogo.png"
 
